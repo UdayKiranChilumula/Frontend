@@ -6,13 +6,20 @@ RUN npm install
 COPY . .
 RUN npm run build
 
-# Step 2: Serve with Nginx and proxy /api
+# Step 2: Serve with NGINX
 FROM nginx:alpine
+
+# Clean default html
 RUN rm -rf /usr/share/nginx/html/*
+
+# Copy React build output
 COPY --from=build /app/dist /usr/share/nginx/html
 
-# Copy custom NGINX config
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+# Copy NGINX template and entrypoint script
+COPY default.conf.template /etc/nginx/templates/default.conf.template
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
 EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+
+CMD ["/entrypoint.sh"]
