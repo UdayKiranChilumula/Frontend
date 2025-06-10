@@ -6,7 +6,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: `http://"${process.env.API_HOSPT}":3000`,
+        target: `http://"${process.env.API_HOST}":3000`,
         secure: false,
       },
     },
