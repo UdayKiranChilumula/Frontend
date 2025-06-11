@@ -6,7 +6,7 @@ RUN npm install
 COPY . .
 RUN npm run build
 
-# Step 2: Serve with NGIN
+# Step 2: Serve with NGINX
 FROM nginx:alpine
 
 # Clean default html
