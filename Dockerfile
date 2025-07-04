@@ -1,4 +1,4 @@
-# Step 1: Build the React frontend0
+# Step 1: Build the React frontend00
 FROM node:18 AS build
 WORKDIR /app
 COPY package.json package-lock.json ./
